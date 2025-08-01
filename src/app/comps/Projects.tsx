@@ -19,7 +19,7 @@ const Projects = () => {
                             <p className='text-gray-600 dark:text-gray-300 mb-4'>{project.description}</p>
                             <div className='flex flex-wrap gap-2 mb-4'>
                                 {project.technologies.map((tech) => (
-                                    <span className='px-3 py-1 bg-primary/10 text-primary rounded-full text-sm'>{tech}</span>
+                                    <span key={tech} className='px-3 py-1 bg-primary/10 text-primary rounded-full text-sm'>{tech}</span>
                                 ))}
                             </div>
                             <div className='flex gap-4 mt-2'>
