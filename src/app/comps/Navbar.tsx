@@ -1,13 +1,12 @@
 'use client'
 import { Bars3Icon, MoonIcon, SunIcon, XMarkIcon } from '@heroicons/react/16/solid';
-import { div } from 'framer-motion/client';
 import Link from 'next/link';
-
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
-    const theme = "dark"
+    const { theme, toggleTheme } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname()
     const toggleMobileMenu = () => {
@@ -22,7 +21,7 @@ const Navbar = () => {
     ]
 
     return (
-        <nav className='fixed w-full bg-white/80 dark:bg-dark/80 backdrop-blur-sm z-50'>
+        <nav className='fixed w-full bg-white/80 dark:bg-dark/80 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors'>
             <div className='container max-w-7xl mx-auto px-4'>
                 {/* desktop menu */}
                 <div className='flex items-center justify-between h-16'>
@@ -35,7 +34,7 @@ const Navbar = () => {
                             )
 
                         })}
-                        <button className='p-2 rounded-lg hover:bg-gray-100 text-primary dark:hover:bg-gray-800 transition-colors cursor-pointer' onClick={toggleMobileMenu}>
+                        <button className='p-2 rounded-lg hover:bg-gray-100 dark:text-white hover:text-primary dark:hover:bg-gray-800 transition-colors cursor-pointer' onClick={toggleTheme}>
                             {
                                 theme === "dark" ? (
                                     <SunIcon className='w-5 h-5' />
@@ -51,7 +50,7 @@ const Navbar = () => {
                 {/* mobile menu button */}
                 <button
                     className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
-                    onClick={toggleMobileMenu}
+                    onClick={toggleTheme}
                 >
                     {isMobileMenuOpen ? (
                         <XMarkIcon className="h-6 w-6" />
@@ -74,9 +73,7 @@ const Navbar = () => {
                             ))}
                         </div>
                         <button
-                            onClick={() => {
-                                setIsMobileMenuOpen(false);
-                            }}
+                            onClick={toggleTheme}
                             className="flex items-center py-2 hover:text-primary transition-colors"
                         >
                             {theme === 'dark' ? (
