@@ -1,5 +1,6 @@
 import Hero from "./comps/Hero";
-import Projects from "./projects/page";
+import Projects from "./comps/Projects";
+
 
 export default function Home() {
   return (
